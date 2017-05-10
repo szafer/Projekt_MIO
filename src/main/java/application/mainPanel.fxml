@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane fx:id="spMainPanel" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainPanelController">
+  <items>
+    <AnchorPane minHeight="395.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <SplitPane dividerPositions="0.60423197492163" layoutX="-2.0" layoutY="-2.0" prefHeight="395.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane fx:id="panelFunkcja" minHeight="0.0" minWidth="0.0" prefHeight="393.0" prefWidth="913.0">
+                     <children>
+                        <StackPane fx:id="spFunkcja" layoutX="106.0" layoutY="161.0" prefHeight="393.0" prefWidth="767.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+                <AnchorPane minHeight="390.0" minWidth="500.0" prefHeight="366.0" prefWidth="501.0">
+                     <children>
+                        <TextField layoutX="130.0" layoutY="87.0" />
+                        <Label layoutX="14.0" layoutY="92.0" text="Wzór:" />
+                        <Label layoutX="14.0" layoutY="125.0" text="T Max" />
+                        <Label layoutX="14.0" layoutY="156.0" text="St Chłodzenia" />
+                        <Label layoutX="14.0" layoutY="189.0" text="Przedział od" />
+                        <Label layoutX="14.0" layoutY="220.0" text="Przedział do" />
+                        <Label layoutX="14.0" layoutY="252.0" text="Epoka" />
+                        <Slider layoutX="129.0" layoutY="125.0" />
+                        <Slider layoutX="129.0" layoutY="156.0" />
+                        <Slider layoutX="129.0" layoutY="189.0" />
+                        <Slider layoutX="129.0" layoutY="220.0" />
+                        <Slider layoutX="129.0" layoutY="252.0" />
+                        <TextField fx:id="txtTmax" layoutX="302.0" layoutY="120.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="txtStChlodzenia" layoutX="302.0" layoutY="152.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="txtPrzedzialOd" layoutX="302.0" layoutY="184.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="txtPrzedzialDo" layoutX="301.0" layoutY="215.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="txtEpoka" layoutX="301.0" layoutY="248.0" prefHeight="25.0" prefWidth="100.0" />
+                        <Button fx:id="btnStart" layoutX="39.0" layoutY="288.0" mnemonicParsing="false" onAction="#onStart" prefHeight="25.0" prefWidth="100.0" text="Start" />
+                        <Button fx:id="btnStop" layoutX="165.0" layoutY="288.0" mnemonicParsing="false" onAction="#onStop" prefHeight="25.0" prefWidth="100.0" text="Stop" />
+                        <Button fx:id="btnZamknij" layoutX="291.0" layoutY="288.0" mnemonicParsing="false" onAction="#onZamknij" prefHeight="25.0" prefWidth="100.0" text="Zamknij" />
+                        <Label layoutX="14.0" layoutY="346.0" text="Czas:" />
+                        <Button layoutX="165.0" layoutY="341.0" mnemonicParsing="false" onAction="#autoZoom" prefHeight="25.0" prefWidth="100.0" text="Auto Zoom" />
+                        <Label layoutX="14.0" layoutY="22.0" text="Funkcja" />
+                        <ComboBox fx:id="cbFunkcja" layoutX="129.0" layoutY="17.0" onAction="#ustawFunkcje" prefHeight="25.0" prefWidth="270.0" promptText="Wybierz funkcję" />
+                        <ComboBox fx:id="cbAlgorytm" layoutX="130.0" layoutY="52.0" onAction="#ustawAlgorytm" prefHeight="25.0" prefWidth="270.0" promptText="Wybierz algorytm" />
+                        <Label layoutX="16.0" layoutY="57.0" text="Algorytm" />
+                        <Button fx:id="btnWykres" layoutX="291.0" layoutY="341.0" mnemonicParsing="false" onAction="#onWykres" prefHeight="25.0" prefWidth="120.0" text="Wykres funkcji" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <LineChart fx:id="chart" layoutX="262.0" prefHeight="395.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <xAxis>
+                <NumberAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
