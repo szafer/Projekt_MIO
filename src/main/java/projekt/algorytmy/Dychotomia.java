@@ -13,8 +13,8 @@ import projekt.funkcje.Funkcja;
 public class Dychotomia implements Algorytm {
 	private static final double EPSILON = 0.05;
 	private static final int precyzja = 6;
-	private int przedzialOd;
-	private int przedzialDo;
+	private double przedzialOd;
+	private double przedzialDo;
 	private Funkcja funkcja;
 	private List<XYChart.Data> lista = new ArrayList<XYChart.Data>();
 	private XYChart.Series series = new XYChart.Series();
@@ -27,7 +27,7 @@ public class Dychotomia implements Algorytm {
 		this.funkcja = funkcja;
 	}
 
-	public Dychotomia(int przedzialOd, int przedzialDo, Funkcja funkcja) {
+	public Dychotomia(double przedzialOd, double przedzialDo, Funkcja funkcja) {
 		super();
 		this.przedzialOd = przedzialOd;
 		this.przedzialDo = przedzialDo;
@@ -94,5 +94,12 @@ public class Dychotomia implements Algorytm {
 	@Override
 	public ConcurrentLinkedQueue<XYChart.Data<Double, Double>> getData() {
 		return data;
+	}
+
+	@Override
+	public void ustawParametry(double temperaturaMax, double stalaChlodzenia, double przedzial_od, double przedzial_odo,
+			int epoka) {
+		this.przedzialOd = przedzial_od;
+		this.przedzialDo = przedzial_odo;
 	}
 }

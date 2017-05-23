@@ -2,7 +2,7 @@ package lab1;
 
 import projekt.algorytmy.Dychotomia;
 import projekt.algorytmy.ZlotyPodzial;
-import projekt.funkcje.Funkcja1;
+import projekt.funkcje.FunkcjaKwadratowa;
 import projekt.funkcje.Funkcja2;
 import projekt.funkcje.Funkcja3;
 
@@ -10,7 +10,7 @@ public class Main
 {
     public static void main( String[] args )
     {
-    	Funkcja1 f1 = new Funkcja1();
+    	FunkcjaKwadratowa f1 = new FunkcjaKwadratowa();
     	Funkcja2 f2 = new Funkcja2();
     	Funkcja3 f3 = new Funkcja3();
     	

@@ -11,11 +11,11 @@ public class ZlotyPodzial implements Algorytm {
 	private static final int precyzja = 6;
 	private ConcurrentLinkedQueue<XYChart.Data<Double, Double>> data = new ConcurrentLinkedQueue<XYChart.Data<Double, Double>>();
 
-	private int przedzialOd;
-	private int przedzialDo;
+	private double przedzialOd;
+	private double przedzialDo;
 	private Funkcja f;
 
-	public ZlotyPodzial(int przedzialOd, int przedzialDo, Funkcja f) {
+	public ZlotyPodzial(double przedzialOd, double przedzialDo, Funkcja f) {
 		super();
 		this.przedzialOd = przedzialOd;
 		this.przedzialDo = przedzialDo;
@@ -51,7 +51,8 @@ public class ZlotyPodzial implements Algorytm {
 				xR = a + k * (b - a);
 			}
 			try {
-				//TODO nie podawać współrzędnych tylko ilośc iteracji po kßórych schodzi do 0
+				// TODO nie podawać współrzędnych tylko ilośc iteracji po
+				// kßórych schodzi do 0
 				data.add(new XYChart.Data(xL, a));
 				data.add(new XYChart.Data(xR, b));
 			} catch (Exception e) {
@@ -81,5 +82,12 @@ public class ZlotyPodzial implements Algorytm {
 	@Override
 	public ConcurrentLinkedQueue<XYChart.Data<Double, Double>> getData() {
 		return data;
+	}
+
+	@Override
+	public void ustawParametry(double temperaturaMax, double stalaChlodzenia, double przedzial_od, double przedzial_odo,
+			int epoka) {
+		this.przedzialOd = przedzial_od;
+		this.przedzialDo = przedzial_odo;
 	}
 }

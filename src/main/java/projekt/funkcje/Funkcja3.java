@@ -17,4 +17,29 @@ public class Funkcja3 implements Funkcja {
 	public Range getRange() {
 		return new Range(-1, 1);
 	}
+
+	@Override
+	public double getTMax() {
+		return 35000;
+	}
+
+	@Override
+	public double getStChlodzenia() {
+		return 0.85d;
+	}
+
+	@Override
+	public double getPrzedzialOd() {
+		return getRange().getMin();
+	}
+
+	@Override
+	public double getPrzedzialDo() {
+		return getRange().getMax();
+	}
+
+	@Override
+	public int getEpoka() {
+		return 55000;
+	}
 }

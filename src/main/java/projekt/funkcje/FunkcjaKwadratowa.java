@@ -2,25 +2,26 @@ package projekt.funkcje;
 
 import org.jzy3d.maths.Range;
 
-public class Funkcja2 implements Funkcja {
+public class FunkcjaKwadratowa implements Funkcja {
 	public Double wykonaj(Double wartosc) {
-		return Math.pow(wartosc - 5, 2);
+		return Math.pow(wartosc, 2);
 	}
 
 	@Override
 	public Double wykonaj(double x1, double x2) {
-		// TODO Auto-generated method stub
 		return null;
+		// TODO Auto-generated method stub
+//		return x1 * x2;
 	}
 
 	@Override
 	public Range getRange() {
-		return new Range(-10, 10);
+		return new Range(-3, 3);
 	}
 
 	@Override
 	public double getTMax() {
-		return 35000;
+		return 15000;
 	}
 
 	@Override
@@ -40,6 +41,6 @@ public class Funkcja2 implements Funkcja {
 
 	@Override
 	public int getEpoka() {
-		return 55000;
+		return 1000;
 	}
 }

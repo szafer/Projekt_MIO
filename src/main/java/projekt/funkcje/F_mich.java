@@ -13,7 +13,7 @@ import org.jzy3d.maths.Range;
 public class F_mich implements Funkcja {
 	private final double PI = 3.14159265;
 	private int n = 2;
-	private int m = 2;
+	private int m = 10;
 	private Double s = new Double(0);
 
 	public Double wykonaj(Double wartosc) {
@@ -22,22 +22,48 @@ public class F_mich implements Funkcja {
 			s1 = Math.pow(3, 1.6d);
 			double x = (i + 1.0) * wartosc;
 			double y = 2.0 / PI;
-			// System.out.println(x);
-			// System.out.println(y );
-			// s1 = Math.pow(1.8013d,0.636d);
 			s = +Math.sin(wartosc) * Math.pow(Math.sin(Math.pow((i + 1.0) * wartosc, (2.0 / PI))), 2.0 * m);
 		}
 		return -1 * s;
 	}
 
-	public Double wykonaj(double x1, double x2) {
-		s = +Math.sin(x1) * Math.pow(Math.sin(x1) * (x1 / PI), 2.0 * m)
-				+ Math.sin(x2) * Math.pow(Math.sin(x2) * (x2 / PI), 2.0 * m);
-		return -1 * s;
+	public Double wykonaj(double x, double y) {
+//		s = +Math.sin(x1) * Math.pow(Math.sin(x1) * (x1 / PI), 2.0 * m)
+//				+ Math.sin(x2) * Math.pow(Math.sin(x2) * (x2 / PI), 2.0 * m);
+//		return -1 * s;
+		s = +Math.sin(x) * Math.pow(Math.sin(x*x   / PI), 2.0 * m)
+				+Math.sin(y) * Math.pow(Math.sin(2*y*y / PI), 2.0 * m);
+			return -1 * s;
 	}
 
 	@Override
 	public Range getRange() {
-		return new Range(0, 3);
+		return new Range(0.0f, 3.14159f);// return new Range(0.0f,
+											// 3.14159265f);
+	}
+
+	@Override
+	public double getTMax() {
+		return 350000;
+	}
+
+	@Override
+	public double getStChlodzenia() {
+		return 0.85d;
+	}
+
+	@Override
+	public double getPrzedzialOd() {
+		return getRange().getMin();
+	}
+
+	@Override
+	public double getPrzedzialDo() {
+		return getRange().getMax();
+	}
+
+	@Override
+	public int getEpoka() {
+		return 300000;
 	}
 }

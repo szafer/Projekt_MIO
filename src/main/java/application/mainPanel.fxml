@@ -25,11 +25,11 @@
                         <Label layoutX="14.0" layoutY="189.0" text="Przedział od" />
                         <Label layoutX="14.0" layoutY="220.0" text="Przedział do" />
                         <Label layoutX="14.0" layoutY="252.0" text="Epoka" />
-                        <Slider layoutX="129.0" layoutY="125.0" />
-                        <Slider layoutX="129.0" layoutY="156.0" />
-                        <Slider layoutX="129.0" layoutY="189.0" />
-                        <Slider layoutX="129.0" layoutY="220.0" />
-                        <Slider layoutX="129.0" layoutY="252.0" />
+                        <Slider fx:id="slTMax" layoutX="129.0" layoutY="125.0" />
+                        <Slider fx:id="slStChlodzenia" layoutX="129.0" layoutY="156.0" />
+                        <Slider fx:id="slPrzedzialOd" layoutX="129.0" layoutY="189.0" />
+                        <Slider fx:id="slPrzedzialDo" layoutX="129.0" layoutY="220.0" />
+                        <Slider fx:id="slEpoka" layoutX="129.0" layoutY="252.0" />
                         <TextField fx:id="txtTmax" layoutX="302.0" layoutY="120.0" prefHeight="25.0" prefWidth="100.0" />
                         <TextField fx:id="txtStChlodzenia" layoutX="302.0" layoutY="152.0" prefHeight="25.0" prefWidth="100.0" />
                         <TextField fx:id="txtPrzedzialOd" layoutX="302.0" layoutY="184.0" prefHeight="25.0" prefWidth="100.0" />

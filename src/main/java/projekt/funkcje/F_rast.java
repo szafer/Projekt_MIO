@@ -14,19 +14,48 @@ public class F_rast implements Funkcja {
 	private Double s = new Double(0);
 
 	public Double wykonaj(Double wartosc) {
-		for (int i = 0; i < n; i++) {
-			s = +Math.pow(wartosc, 2) - (10 * Math.cos(2 * PI * wartosc));
-		}
-		return 10 * n + s;
+		return null;
+		// for (int i = 0; i < n; i++) {
+		// s = +Math.pow(wartosc, 2) - (10 * Math.cos(2 * PI * wartosc));
+		// }
+		// return 10 * n + s;
 	}
 
-	public Double wykonaj(double x1, double x2) {
+	public Double wykonaj(double x, double y) {
+		return 10 * n + (x * x - 10 * Math.cos(2 * PI * x)) + (y * y - 10 * Math.cos(2 * PI * y));
+	}
+
+	public Double wykonaj_2(double x1, double x2) {
 		return x1 * x1 + x2 * x2 - Math.cos(18 * x1) - Math.cos(18 * x2) + 2;
 	}
 
 	@Override
 	public Range getRange() {
-		return new Range(-1, 1);
+		return new Range(-5.12f, 5.12f);
 	}
 
+	@Override
+	public double getTMax() {
+		return 350000;
+	}
+
+	@Override
+	public double getStChlodzenia() {
+		return 0.92d;
+	}
+
+	@Override
+	public double getPrzedzialOd() {
+		return getRange().getMin();
+	}
+
+	@Override
+	public double getPrzedzialDo() {
+		return getRange().getMax();
+	}
+
+	@Override
+	public int getEpoka() {
+		return 300000;
+	}
 }
