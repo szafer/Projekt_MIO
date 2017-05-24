@@ -1,4 +1,4 @@
-ackage projekt;
+package projekt;
 
 public enum NazwaAlgorytmu {
 

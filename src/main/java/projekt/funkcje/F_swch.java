@@ -1,5 +1,7 @@
 package projekt.funkcje;
 
+import java.math.BigDecimal;
+
 import org.jzy3d.maths.Range;
 
 /**
@@ -37,9 +39,14 @@ public class F_swch implements Funkcja {
 	 * https://jamesmccaffrey.wordpress.com/2011/12/10/plotting-schwefels-
 	 * function-with-scilab/
 	 */
-	public Double wykonaj(double x1, double x2) {
-		return (-x1 * Math.sin(Math.sqrt(Math.abs(x1)))) + (-x2 * Math.sin(Math.sqrt(Math.abs(x2))));
-		// return x1 * Math.sin(Math.abs(x1)) + x2 * Math.sin(Math.abs(x2));
+
+	public Double wykonaj(double x, double y) {
+		double d = x * Math.sin(Math.sqrt(Math.abs(x))) +
+				   y * Math.sin(Math.sqrt(Math.abs(y)));
+		BigDecimal bd = new BigDecimal(d);
+		bd = bd.setScale(4,BigDecimal.ROUND_HALF_UP);
+	
+		return 418.9829 * n - bd.doubleValue();
 	}
 
 	@Override
