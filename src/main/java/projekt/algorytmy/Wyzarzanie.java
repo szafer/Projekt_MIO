@@ -57,11 +57,13 @@ public class Wyzarzanie implements Algorytm {
 	public Boolean wykonaj() {
 		Punkt punkt = new Punkt();
 		Punkt punktBis = new Punkt();
+		Punkt punktLeader = new Punkt();
 		int przedzial = (int) (przedzial_do - przedzial_od);
 		int losP = (int) (random.nextInt(przedzial) + przedzial_od);
 		punkt.setX(losP);
 		losP = (int) (random.nextInt(przedzial) + przedzial_od);
 		punkt.setY(losP);
+		double wynLeader = 9999;
 
 		// Losowy wybór punktu startowego
 		// int licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do
@@ -84,9 +86,29 @@ public class Wyzarzanie implements Algorytm {
 		for (int obr = 0; obr < epoka; obr++) {
 			punktBis = sasiad(punkt);
 
+			double wynikBis = funkcja.wykonaj(punktBis.x, punktBis.y);
+			if (wynLeader > wynikBis ){
+				System.out.format("===========================punkt.x %.4f punkt.y %.4f  podmiana leadera z %.4f  na %.4f %n ", punktBis.getX(), punktBis.getY(),
+						wynLeader, wynikBis);
+			//	System.out.println(punktLeader.x+"/"+punktLeader.y+"++++++++++++++++++++++++podmiana leadera "+ wynLeader +" na " +wynikBis);
+
+				wynLeader = wynikBis;
+				punktLeader.x = punktBis.x;
+				punktLeader.y = punktBis.y;
+				
+			}
+			double wynik = funkcja.wykonaj(punkt.x, punkt.y);
+			if (wynLeader > wynik ){
+				System.out.format("===========================punkt.x %.4f punkt.y %.4f  podmiana leadera z %.4f  na %.4f %n ", punkt.getX(), punkt.getY(),
+						wynLeader, wynik);
+				wynLeader = wynik;
+				punktLeader.x = punkt.x;
+				punktLeader.y = punkt.y;
+
+			}	
 			Double delta = new Double(0);
 			// Wyznaczenie różnicy wartości funkcji w punkcie s i sBis
-			delta = (funkcja.wykonaj(punktBis.x, punktBis.y) - funkcja.wykonaj(punkt.x, punkt.y));
+			delta = wynikBis - wynik;
 			if (delta <= 0) {
 				punkt.setX(punktBis.getX());
 				punkt.setY(punktBis.getY());
@@ -110,14 +132,24 @@ public class Wyzarzanie implements Algorytm {
 
 			}
 
-			System.out.format("s.x %.10f s.y %.10f  w %d obrocie wartosc funkcji %.10f %n ", punkt.getX(), punkt.getY(),
+			System.out.format("punkt.x %.4f punkt.y %.4f  w %d obrocie wartosc funkcji %.4f %n ", punkt.getX(), punkt.getY(),
 					obr, funkcja.wykonaj(punkt.x, punkt.y));
 			if (obr % 1000 == 0) {
+				punkt.setX(punktLeader.getX());
+				punkt.setY(punktLeader.getY());
+				System.out.println("================= leader x "+punkt.x+" y "+punkt.y);
+
 				// funkcja zmiany temperatury
 				temperaturaLokalna = stalaChlodzenia * temperaturaLokalna;
+				if (temperaturaLokalna < 1 && obr > 200000){
+					temperaturaLokalna = temperaturaMax * 0.2;
+					System.out.println("podbice temperatury ");
+
+				}
 			}
 		}
-		System.out.println("koniec ");
+		System.out.format("koniec leader punkt.x %.4f punkt.y %.4f   wartosc funkcji %.4f %n ", punktLeader.getX(), punktLeader.getY(),
+					  funkcja.wykonaj(punktLeader.x, punktLeader.y));
 		return true;
 	}
 
