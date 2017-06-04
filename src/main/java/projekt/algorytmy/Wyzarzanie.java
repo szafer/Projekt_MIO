@@ -63,24 +63,9 @@ public class Wyzarzanie implements Algorytm {
 		int przedzial = (int) (przedzial_do - przedzial_od);
 		int losP = (int) (random.nextInt(przedzial) + przedzial_od);
 		punkt.setX(losP);
-		losP = (int) (random.nextInt(przedzial) + przedzial_od);
+	//	losP = (int) (random.nextInt(przedzial) + przedzial_od);
 		punkt.setY(losP);
 		double wynLeader = 9999;
-
-		// Losowy wybór punktu startowego
-		// int licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do
-		// - 1) - (przedzial_od + 1)))
-		// - (Math.abs(przedzial_od) - 2))));
-		// int licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do
-		// - 1) - (przedzial_od + 1)))
-		// - (Math.abs(przedzial_od) - 2))));
-		// Double x = new Double(licz);
-		// licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do -
-		// 1) - (przedzial_od + 1)))
-		// - (Math.abs(przedzial_od) - 2))));
-		// Double y = new Double(licz);
-		// punkt.setX(x);
-		// punkt.setY(y);
 
 		Double temperaturaLokalna = temperaturaMax;
 
@@ -207,6 +192,12 @@ public class Wyzarzanie implements Algorytm {
 	private Punkt sasiad(Punkt punkt) {
 		Double i = random.nextDouble() / 10;
 		Double j = random.nextDouble() / 10;
+		int przedzial = (int) (przedzial_do - przedzial_od);
+		
+		if (przedzial > 15){
+			 i = (double) random.nextInt(15) ;
+			 j = (double) random.nextInt(15) ;
+		}
 
 		Punkt sasiad = new Punkt();
 		sasiad.y = punkt.y;

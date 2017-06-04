@@ -26,22 +26,22 @@ public class Main
         Wyzarzanie wyzarzanie1 = new Wyzarzanie(funKwadrat, 15000, 0.85,-3, 3, 10000);
         Wyzarzanie wyzarzanie2 = new Wyzarzanie(funMichalewicz, 350000, 0.89, 0, 3.14, 200000);
         Wyzarzanie wyzarzanie3 = new Wyzarzanie(funRastrigin, 3500000, 0.93, -5.12, 5.12, 350000); 
-        Wyzarzanie wyzarzanie4 = new Wyzarzanie(funSchwefel, 3500000, 0.95, -500, 500, 200000);
+        Wyzarzanie wyzarzanie4 = new Wyzarzanie(funSchwefel, 3500000, 0.95, -500, 500, 350000);
 
 //        System.out.println("Wyzarzanie dla x^2"  );
 //        wyzarzanie1.wykonaj(1);
 
         
 //        
-        System.out.println("Wyzarzanie dla mich"  );
-        wyzarzanie2.wykonaj();
+//        System.out.println("Wyzarzanie dla mich"  );
+//        wyzarzanie2.wykonaj();
         
 ////        
 //        System.out.println("Wyzarzanie dla rast"  );
 //        wyzarzanie3.wykonaj();
         
 //        
-//        System.out.println("Wyzarzanie dla swch"  );
-//        wyzarzanie4.wykonaj();
+        System.out.println("Wyzarzanie dla swch"  );
+        wyzarzanie4.wykonaj();
     }
 }
