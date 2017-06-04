@@ -1,5 +1,7 @@
 package projekt.algorytmy;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -137,15 +139,15 @@ public class Wyzarzanie implements Algorytm {
 			if (obr % 1000 == 0) {
 				punkt.setX(punktLeader.getX());
 				punkt.setY(punktLeader.getY());
-				System.out.println("================= leader x "+punkt.x+" y "+punkt.y);
+				System.out.println("po 1000 przywraca ================= leadera x "+punkt.x+" y "+punkt.y);
 
 				// funkcja zmiany temperatury
 				temperaturaLokalna = stalaChlodzenia * temperaturaLokalna;
-				if (temperaturaLokalna < 1 && obr > 200000){
-					temperaturaLokalna = temperaturaMax * 0.2;
-					System.out.println("podbice temperatury ");
-
-				}
+//				if (temperaturaLokalna < 1 && obr > 200000){
+//					temperaturaLokalna = temperaturaMax * 0.2;
+//					System.out.println("podnosze temperature ");
+//
+//				}
 			}
 		}
 		System.out.format("koniec leader punkt.x %.4f punkt.y %.4f   wartosc funkcji %.4f %n ", punktLeader.getX(), punktLeader.getY(),
@@ -229,23 +231,30 @@ public class Wyzarzanie implements Algorytm {
 		} else {
 			zmianaSasiad--;
 		}
-		if (sasiad.x > przedzial_do || sasiad.y > przedzial_do) {
-			System.out.println("===============================================================");
-		}
+//		if (sasiad.x > przedzial_do || sasiad.y > przedzial_do) {
+//			System.out.println("===============================================================");
+//		}
+		sasiad.x =  new BigDecimal(sasiad.x).setScale(4, RoundingMode.HALF_UP).doubleValue();
+		sasiad.y =  new BigDecimal(sasiad.y).setScale(4, RoundingMode.HALF_UP).doubleValue();
+
 		return sasiad;
 	}
 
 	private Double sasiad(Double wartosc) {
 		Double i = random.nextDouble() / 10;
+		BigDecimal zwrot;
 		if (wartosc - i <= przedzial_do && wartosc - i >= przedzial_od && zmianaSasiad == 0) {
 			zmianaSasiad = 1;
-			return wartosc - i;
+			zwrot = new BigDecimal(wartosc - i).setScale(4, RoundingMode.HALF_UP);
+			return zwrot.doubleValue();
 		}
 		if (wartosc + i <= przedzial_do && wartosc + i >= przedzial_od && zmianaSasiad == 1) {
 			zmianaSasiad = 0;
-			return wartosc + i;
-		}
+			zwrot = new BigDecimal(wartosc + i).setScale(4, RoundingMode.HALF_UP);
+			return zwrot.doubleValue();
+			}
 		zmianaSasiad = (zmianaSasiad + 1) % 2;
+		
 		return wartosc;
 	}
 

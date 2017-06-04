@@ -27,7 +27,8 @@ public class F_swch implements Funkcja {
 			 */
 			fitness += Math.pow(innerSum, 2.0);
 		}
-		return fitness;
+		BigDecimal bdfitness = new BigDecimal(fitness).setScale(4,BigDecimal.ROUND_HALF_UP);
+		return bdfitness.doubleValue();
 	}
 
 	// public Double wykonaj(double x, double y) {
