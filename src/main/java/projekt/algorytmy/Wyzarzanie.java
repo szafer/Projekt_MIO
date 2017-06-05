@@ -1,5 +1,7 @@
 package projekt.algorytmy;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -25,7 +27,7 @@ public class Wyzarzanie implements Algorytm {
     private ConcurrentLinkedQueue<XYChart.Data<Double, Double>> data = new ConcurrentLinkedQueue<XYChart.Data<Double, Double>>();
 
     public Wyzarzanie(Funkcja funkcja, double temperaturaMax, double stalaChlodzenia, double przedzial_od,
-        double przedzial_odo, int epoka) {
+            double przedzial_odo, int epoka) {
         this.funkcja = funkcja;
         this.temperaturaMax = temperaturaMax;
         this.stalaChlodzenia = stalaChlodzenia;
@@ -33,7 +35,7 @@ public class Wyzarzanie implements Algorytm {
         this.przedzial_do = przedzial_odo;
         this.epoka = epoka;
         System.out.println(
-            temperaturaMax + " " + stalaChlodzenia + " " + przedzial_od + " " + przedzial_do + " " + epoka);
+                temperaturaMax + " " + stalaChlodzenia + " " + przedzial_od + " " + przedzial_do + " " + epoka);
 
         if (epoka / 100 > 100)
             if (epoka / 500 > 100)
@@ -57,36 +59,43 @@ public class Wyzarzanie implements Algorytm {
     public Boolean wykonaj() {
         Punkt punkt = new Punkt();
         Punkt punktBis = new Punkt();
+        Punkt punktLeader = new Punkt();
         int przedzial = (int) (przedzial_do - przedzial_od);
         int losP = (int) (random.nextInt(przedzial) + przedzial_od);
         punkt.setX(losP);
-        losP = (int) (random.nextInt(przedzial) + przedzial_od);
+    //  losP = (int) (random.nextInt(przedzial) + przedzial_od);
         punkt.setY(losP);
-
-        // Losowy wybór punktu startowego
-        // int licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do
-        // - 1) - (przedzial_od + 1)))
-        // - (Math.abs(przedzial_od) - 2))));
-        // int licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do
-        // - 1) - (przedzial_od + 1)))
-        // - (Math.abs(przedzial_od) - 2))));
-        // Double x = new Double(licz);
-        // licz = (int) (random.nextInt((int) (Math.abs((int) ((przedzial_do -
-        // 1) - (przedzial_od + 1)))
-        // - (Math.abs(przedzial_od) - 2))));
-        // Double y = new Double(licz);
-        // punkt.setX(x);
-        // punkt.setY(y);
+        double wynLeader = 9999;
 
         Double temperaturaLokalna = temperaturaMax;
-        Double exp = 0d;
+
         // GLOWNA PETLA
         for (int obr = 0; obr < epoka; obr++) {
             punktBis = sasiad(punkt);
 
+            double wynikBis = funkcja.wykonaj(punktBis.x, punktBis.y);
+            if (wynLeader > wynikBis ){
+                System.out.format("===========================punkt.x %.4f punkt.y %.4f  podmiana leadera z %.4f  na %.4f %n ", punktBis.getX(), punktBis.getY(),
+                        wynLeader, wynikBis);
+            //  System.out.println(punktLeader.x+"/"+punktLeader.y+"++++++++++++++++++++++++podmiana leadera "+ wynLeader +" na " +wynikBis);
+
+                wynLeader = wynikBis;
+                punktLeader.x = punktBis.x;
+                punktLeader.y = punktBis.y;
+                
+            }
+            double wynik = funkcja.wykonaj(punkt.x, punkt.y);
+            if (wynLeader > wynik ){
+                System.out.format("===========================punkt.x %.4f punkt.y %.4f  podmiana leadera z %.4f  na %.4f %n ", punkt.getX(), punkt.getY(),
+                        wynLeader, wynik);
+                wynLeader = wynik;
+                punktLeader.x = punkt.x;
+                punktLeader.y = punkt.y;
+
+            }   
             Double delta = new Double(0);
             // Wyznaczenie różnicy wartości funkcji w punkcie s i sBis
-            delta = (funkcja.wykonaj(punktBis.x, punktBis.y) - funkcja.wykonaj(punkt.x, punkt.y));
+            delta = wynikBis - wynik;
             if (delta <= 0) {
                 punkt.setX(punktBis.getX());
                 punkt.setY(punktBis.getY());
@@ -96,7 +105,7 @@ public class Wyzarzanie implements Algorytm {
                     los = 1.0;
                 }
                 // TODO ??
-                exp = Math.pow(euler, -1 * delta / (temperaturaLokalna * boltzman));
+                Double exp = Math.pow(euler, -1 * delta / (temperaturaLokalna * boltzman));
                 exp = Math.pow(euler, -1 * delta / temperaturaLokalna);
                 if (los < exp) {
                     punkt.setX(punktBis.getX());
@@ -110,16 +119,24 @@ public class Wyzarzanie implements Algorytm {
 
             }
 
-            System.out.format("s.x %.10f s.y %.10f  w %d obrocie wartosc funkcji %.10f  temperatura  %.10f exp %.10f %n", punkt.getX(), punkt.getY(),
-                obr, funkcja.wykonaj(punkt.x, punkt.y), temperaturaLokalna, exp);
+            System.out.format("punkt.x %.4f punkt.y %.4f  w %d obrocie wartosc funkcji %.4f %n ", punkt.getX(), punkt.getY(),
+                    obr, funkcja.wykonaj(punkt.x, punkt.y));
             if (obr % 1000 == 0) {
+                punkt.setX(punktLeader.getX());
+                punkt.setY(punktLeader.getY());
+                System.out.println("po 1000 przywraca ================= leadera x "+punkt.x+" y "+punkt.y);
+
                 // funkcja zmiany temperatury
-//                if (temperaturaLokalna < 1)
-//                    temperaturaLokalna = temperaturaMax / 100;
                 temperaturaLokalna = stalaChlodzenia * temperaturaLokalna;
+//              if (temperaturaLokalna < 1 && obr > 200000){
+//                  temperaturaLokalna = temperaturaMax * 0.2;
+//                  System.out.println("podnosze temperature ");
+//
+//              }
             }
         }
-        System.out.println("koniec ");
+        System.out.format("koniec leader punkt.x %.4f punkt.y %.4f   wartosc funkcji %.4f %n ", punktLeader.getX(), punktLeader.getY(),
+                      funkcja.wykonaj(punktLeader.x, punktLeader.y));
         return true;
     }
 
@@ -127,7 +144,7 @@ public class Wyzarzanie implements Algorytm {
 
         // Losowy wybór punktu startowego
         int licz = (int) (random.nextInt((int) ((przedzial_do - 1) - (przedzial_od + 1)))
-            - (Math.abs(przedzial_od) - 2));
+                - (Math.abs(przedzial_od) - 2));
         Double s = new Double(licz);
         Double temperaturaLokalna = temperaturaMax;
         Double sBis = new Double(0);
@@ -175,6 +192,12 @@ public class Wyzarzanie implements Algorytm {
     private Punkt sasiad(Punkt punkt) {
         Double i = random.nextDouble() / 10;
         Double j = random.nextDouble() / 10;
+        int przedzial = (int) (przedzial_do - przedzial_od);
+        
+        if (przedzial > 15){
+             i = (double) random.nextInt(15) ;
+             j = (double) random.nextInt(15) ;
+        }
 
         Punkt sasiad = new Punkt();
         sasiad.y = punkt.y;
@@ -199,23 +222,30 @@ public class Wyzarzanie implements Algorytm {
         } else {
             zmianaSasiad--;
         }
-        if (sasiad.x > przedzial_do || sasiad.y > przedzial_do) {
-            System.out.println("===============================================================");
-        }
+//      if (sasiad.x > przedzial_do || sasiad.y > przedzial_do) {
+//          System.out.println("===============================================================");
+//      }
+        sasiad.x =  new BigDecimal(sasiad.x).setScale(4, RoundingMode.HALF_UP).doubleValue();
+        sasiad.y =  new BigDecimal(sasiad.y).setScale(4, RoundingMode.HALF_UP).doubleValue();
+
         return sasiad;
     }
 
     private Double sasiad(Double wartosc) {
         Double i = random.nextDouble() / 10;
+        BigDecimal zwrot;
         if (wartosc - i <= przedzial_do && wartosc - i >= przedzial_od && zmianaSasiad == 0) {
             zmianaSasiad = 1;
-            return wartosc - i;
+            zwrot = new BigDecimal(wartosc - i).setScale(4, RoundingMode.HALF_UP);
+            return zwrot.doubleValue();
         }
         if (wartosc + i <= przedzial_do && wartosc + i >= przedzial_od && zmianaSasiad == 1) {
             zmianaSasiad = 0;
-            return wartosc + i;
-        }
+            zwrot = new BigDecimal(wartosc + i).setScale(4, RoundingMode.HALF_UP);
+            return zwrot.doubleValue();
+            }
         zmianaSasiad = (zmianaSasiad + 1) % 2;
+        
         return wartosc;
     }
 
@@ -234,14 +264,14 @@ public class Wyzarzanie implements Algorytm {
 
     @Override
     public void ustawParametry(double temperaturaMax, double stalaChlodzenia, double przedzial_od, double przedzial_odo,
-        int epoka) {
+            int epoka) {
         this.temperaturaMax = temperaturaMax;
         this.stalaChlodzenia = stalaChlodzenia;
         this.przedzial_od = przedzial_od;
         this.przedzial_do = przedzial_odo;
         this.epoka = epoka;
         System.out.println(
-            temperaturaMax + " " + stalaChlodzenia + " " + przedzial_od + " " + przedzial_do + " " + epoka);
+                temperaturaMax + " " + stalaChlodzenia + " " + przedzial_od + " " + przedzial_do + " " + epoka);
 
         if (epoka / 100 > 100)
             if (epoka / 500 > 100)
