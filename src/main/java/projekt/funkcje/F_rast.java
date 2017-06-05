@@ -1,5 +1,7 @@
 package projekt.funkcje;
 
+import java.math.BigDecimal;
+
 import org.jzy3d.maths.Range;
 
 /**
@@ -15,15 +17,21 @@ public class F_rast implements Funkcja {
 
 	public Double wykonaj(Double wartosc) {
 		return null;
-		// for (int i = 0; i < n; i++) {
-		// s = +Math.pow(wartosc, 2) - (10 * Math.cos(2 * PI * wartosc));
-		// }
-		// return 10 * n + s;
 	}
 
 	public Double wykonaj(double x, double y) {
-		return 10 * n + (x * x - 10 * Math.cos(2 * PI * x)) + (y * y - 10 * Math.cos(2 * PI * y));
-	}
+//	  dla 0 zwraca 0 co jest ok https://www.sfu.ca/~ssurjano/rastr.html
+		double d = 10*n +
+				(x*x - 10* Math.cos(2 * PI * x))+
+				(y*y - 10* Math.cos(2 * PI * y));
+		
+		BigDecimal bd = new BigDecimal(d).setScale(4,BigDecimal.ROUND_HALF_UP);
+		return bd.doubleValue();
+			
+//		  dla 0 zwraca -2 co jest ok wg http://155.158.112.25/~algorytmyewolucyjne/materialy/funkcje_testowe_2.pdf		
+//			return 	(x*x -  Math.cos(18 * PI * x))+
+//					(y*y -  Math.cos(18 * PI * y));   
+		}
 
 	public Double wykonaj_2(double x1, double x2) {
 		return x1 * x1 + x2 * x2 - Math.cos(18 * x1) - Math.cos(18 * x2) + 2;

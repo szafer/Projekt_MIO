@@ -1,4 +1,4 @@
-ackage projekt;
+package projekt;
 
 public enum NazwaAlgorytmu {
 
@@ -7,6 +7,7 @@ public enum NazwaAlgorytmu {
 	GOLDER_RATIO("Złoty podział");
 
 	String opis;
+
 	private NazwaAlgorytmu(String opis) {
 		this.opis = opis;
 	}
