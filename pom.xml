@@ -37,9 +37,9 @@
 			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-		<groupId>org.jzy3d</groupId>
-		<artifactId>jzy3d-javafx</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+			<groupId>org.jzy3d</groupId>
+			<artifactId>jzy3d-javafx</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.eclipse.swt.org.eclipse.swt.gtk.linux.x86_64.4.3.swt/org.eclipse.swt.gtk.linux.x86_64 -->
 		<dependency>
