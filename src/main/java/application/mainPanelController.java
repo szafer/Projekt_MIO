@@ -116,8 +116,6 @@ public class mainPanelController {
         cbFunkcja.getItems().addAll(Arrays.asList(NazwaFunkcji.values()));
         cbAlgorytm.getItems().addAll(Arrays.asList(NazwaAlgorytmu.values()));
         // Temperatura
-        slTMax.setMin(0);
-        slTMax.setMax(50000);
         slTMax.valueProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -149,9 +147,6 @@ public class mainPanelController {
 
         TextFormatter<Double> formatter = new TextFormatter<>(filter);
         txtStChlodzenia.setTextFormatter(formatter);
-        slStChlodzenia.setMin(0);
-        slStChlodzenia.setMax(1);
-        slStChlodzenia.setMajorTickUnit(10);
         slStChlodzenia.valueProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -184,8 +179,6 @@ public class mainPanelController {
         });
 
         // PrzedzialOd
-        slPrzedzialOd.setMin(-50);
-        slPrzedzialOd.setMax(10);
         slPrzedzialOd.valueProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -219,8 +212,6 @@ public class mainPanelController {
         });
 
         // PrzedzialDo
-        slPrzedzialDo.setMin(0);
-        slPrzedzialDo.setMax(20);
         slPrzedzialDo.valueProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -240,8 +231,6 @@ public class mainPanelController {
         });
 
         // Epoka
-        slEpoka.setMin(0);
-        slEpoka.setMax(300000);
         slEpoka.valueProperty().addListener(new ChangeListener<Number>() {
 
             @Override

@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane fx:id="spMainPanel" dividerPositions="0.31704260651629074" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainPanelController">
+<SplitPane fx:id="spMainPanel" dividerPositions="0.2543859649122807" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainPanelController">
   <items>
-    <AnchorPane minHeight="250.0" minWidth="500.0" prefHeight="250.0" prefWidth="1278.0">
+    <AnchorPane minHeight="200.0" minWidth="500.0" prefHeight="207.0" prefWidth="1278.0">
          <children>
             <Label layoutX="427.0" layoutY="21.0" text="T Max" />
             <Label layoutX="427.0" layoutY="52.0" text="St Chłodzenia" />
             <Label layoutX="427.0" layoutY="85.0" text="Przedział od" />
             <Label layoutX="427.0" layoutY="116.0" text="Przedział do" />
             <Label layoutX="427.0" layoutY="148.0" text="Epoka" />
-            <Slider fx:id="slTMax" layoutX="521.0" layoutY="23.0" majorTickUnit="5000.0" max="400000.0" minorTickCount="1" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
-            <Slider fx:id="slStChlodzenia" layoutX="521.0" layoutY="54.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="14.0" prefWidth="600.0" showTickMarks="true" />
+            <Slider fx:id="slTMax" layoutX="521.0" layoutY="23.0" majorTickUnit="10000.0" max="400000.0" minorTickCount="2" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="slStChlodzenia" layoutX="521.0" layoutY="54.0" majorTickUnit="0.1" max="1.0" minorTickCount="10" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
             <Slider fx:id="slPrzedzialOd" layoutX="521.0" layoutY="87.0" majorTickUnit="10.0" max="10.0" min="-90.0" minorTickCount="5" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
             <Slider fx:id="slPrzedzialDo" layoutX="521.0" layoutY="118.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
-            <Slider fx:id="slEpoka" layoutX="521.0" layoutY="150.0" majorTickUnit="5000.0" max="500000.0" minorTickCount="2" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="slEpoka" layoutX="521.0" layoutY="150.0" majorTickUnit="20000.0" max="500000.0" minorTickCount="4" prefHeight="14.0" prefWidth="600.0" showTickLabels="true" showTickMarks="true" />
             <TextField fx:id="txtTmax" layoutX="1157.0" layoutY="17.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField fx:id="txtStChlodzenia" layoutX="1157.0" layoutY="49.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField fx:id="txtPrzedzialOd" layoutX="1157.0" layoutY="81.0" prefHeight="25.0" prefWidth="100.0" />
