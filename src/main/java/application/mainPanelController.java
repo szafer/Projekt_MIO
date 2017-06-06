@@ -388,18 +388,10 @@ public class mainPanelController {
         if (nazwaFunkcji == null || nazwaAlgorytmu == null)
             return;
         series1 = new XYChart.Series<Double, Double>();
-        series1.setName(nazwaAlgorytmu.toString());
+        series1.setName(nazwaAlgorytmu.toString() + "-" + nazwaFunkcji.toString());
         chart.getData().add(series1);
         algorytm.ustawParametry(slTMax.getValue(), slStChlodzenia.getValue(), slPrzedzialOd.getValue(),
             slPrzedzialDo.getValue(), Double.valueOf(slEpoka.getValue()).intValue());
-        // TODO odtąd nornalnie działa
-        // F_kwadrat f1 = new F_kwadrat();
-        // System.out.println("Wyzarzanie dla x^2");
-        // wyzarzanie1 = new Wyzarzanie(f1, 15000, 0.85, -3, 3, 1500);
-
-        // wyzarzanie1.wykonaj();
-        // Thread t2 = new Thread(wyzarzanie1);
-        // t2.start();
         executor = Executors.newCachedThreadPool(new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
@@ -418,7 +410,6 @@ public class mainPanelController {
         case WYZARZANIE:
             return new Wyzarzanie(f, f.getTMax(), f.getStChlodzenia(), f.getRange().getMin(), f.getRange().getMax(),
                 f.getEpoka());
-        // return new Wyzarzanie(f, 35000, 0.85, -1, 1, 55000);
         case DYCH:
             return new Dychotomia(f, f.getRange());
         case GOLDER_RATIO:
@@ -437,11 +428,11 @@ public class mainPanelController {
         case F3:
             return new Funkcja3();
         case MICH:
-            return new F_mich();// -3;3
+            return new F_mich();
         case RAST:
-            return new F_rast();// -5,12 ;5,12
+            return new F_rast();
         case SCHW:
-            return new F_swch();// -500;500
+            return new F_swch();
         case ROSEN:
             return new F_Rosenbrocks();
         case ACK:

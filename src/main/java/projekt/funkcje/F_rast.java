@@ -44,12 +44,12 @@ public class F_rast implements Funkcja {
 
 	@Override
 	public double getTMax() {
-		return 350000;
+		return 3500000;
 	}
 
 	@Override
 	public double getStChlodzenia() {
-		return 0.92d;
+		return 0.93d;
 	}
 
 	@Override
@@ -64,6 +64,6 @@ public class F_rast implements Funkcja {
 
 	@Override
 	public int getEpoka() {
-		return 300000;
+		return 350000;
 	}
 }

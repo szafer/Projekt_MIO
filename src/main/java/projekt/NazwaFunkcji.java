@@ -9,8 +9,7 @@ public enum NazwaFunkcji {
 	RAST("Rastrigin"),
 	SCHW("Schwefel"),
 	ROSEN("Rosenbrocks"),
-	ACK("Ackley")/*,
-	HIM("Himmeblau")*/;
+	ACK("Ackley");
 
 	String opis;
 

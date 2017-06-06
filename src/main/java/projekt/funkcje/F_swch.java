@@ -57,12 +57,12 @@ public class F_swch implements Funkcja {
 
 	@Override
 	public double getTMax() {
-		return 350000;
+		return 3500000;
 	}
 
 	@Override
 	public double getStChlodzenia() {
-		return 0.85d;
+		return 0.95d;
 	}
 
 	@Override
@@ -77,6 +77,6 @@ public class F_swch implements Funkcja {
 
 	@Override
 	public int getEpoka() {
-		return 550000;
+		return 350000;
 	}
 }

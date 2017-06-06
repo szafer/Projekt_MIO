@@ -13,16 +13,16 @@ import org.jzy3d.maths.Range;
  *
  */
 public class F_mich implements Funkcja {
-	private final double PI = 3.14159265;
+//	private final double PI = Math.PI;
 	private int n = 2;
 	private int m = 10;
 	private Double s = new Double(0);
 	
 	public Double wykonaj(double x, double y) {
-		s = Math.sin(x) * Math.pow(Math.sin(x*x   / PI), 2.0 * m)
-			+Math.sin(y) * Math.pow(Math.sin(2*y*y / PI), 2.0 * m);
-		double d = Math.sin(x) * Math.pow(Math.sin(x*x   / PI), 2.0 * m)
-				   +Math.sin(y) * Math.pow(Math.sin(2*y*y / PI), 2.0 * m);
+		s = Math.sin(x) * Math.pow(Math.sin(x*x   / Math.PI), 2.0 * m)
+			+Math.sin(y) * Math.pow(Math.sin(2*y*y / Math.PI), 2.0 * m);
+		double d = Math.sin(x) * Math.pow(Math.sin(x*x   / Math.PI), 2.0 * m)
+				   +Math.sin(y) * Math.pow(Math.sin(2*y*y / Math.PI), 2.0 * m);
 		BigDecimal bd = new BigDecimal(d);
 		bd = bd.setScale(4,BigDecimal.ROUND_HALF_UP);
 		return -1 * bd.doubleValue();
@@ -37,8 +37,7 @@ public class F_mich implements Funkcja {
 
 	@Override
 	public Range getRange() {
-		return new Range(0.0f, 3.14159f);// return new Range(0.0f,
-											// 3.14159265f);
+		return new Range(0.0f, 3.14f);
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class F_mich implements Funkcja {
 
 	@Override
 	public double getStChlodzenia() {
-		return 0.85d;
+		return 0.89d;
 	}
 
 	@Override
@@ -63,6 +62,6 @@ public class F_mich implements Funkcja {
 
 	@Override
 	public int getEpoka() {
-		return 300000;
+		return 200000;
 	}
 }

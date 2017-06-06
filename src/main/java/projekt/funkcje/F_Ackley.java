@@ -78,6 +78,6 @@ public class F_Ackley implements Funkcja {
 
 	@Override
 	public int getEpoka() {
-		return 55000;
+		return 155000;
 	}
 }

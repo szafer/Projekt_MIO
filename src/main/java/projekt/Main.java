@@ -21,6 +21,7 @@ public class Main
 		double srast1 = funRastrigin.wykonaj(2, 1);
 		double srast2 = funRastrigin.wykonaj(1, 2.5);
 		double swch = funSchwefel.wykonaj(420.9687, 420.9687); //  wg przykładu wynik =0 dla  420.9687, 420.9687
+		double swch1 = funSchwefel.wykonaj(420.9616, 420.9752);
 //		 double swch1 = funkcja.wykonaj(0,0);
       	
         Wyzarzanie wyzarzanie1 = new Wyzarzanie(funKwadrat, 15000, 0.85,-3, 3, 10000);
@@ -39,7 +40,7 @@ public class Main
 ////        
 //        System.out.println("Wyzarzanie dla rast"  );
 //        wyzarzanie3.wykonaj();
-        
+//        
 //        
         System.out.println("Wyzarzanie dla swch"  );
         wyzarzanie4.wykonaj();
