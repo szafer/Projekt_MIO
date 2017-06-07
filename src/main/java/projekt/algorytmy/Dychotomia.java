@@ -53,9 +53,6 @@ public class Dychotomia implements Algorytm {
 			xL = a + 0.25 * (b - a);
 			xR = a + 0.75 * (b - a);
 			try {
-				// data.add(new XYChart.Data(xL, a));//TODO nie podawać
-				// współrzędnych tylko ilośc iteracji po kßórych schodzi do 0
-				// data.add(new XYChart.Data(xR, b));
 				data.add(new XYChart.Data(it++, xR));
 			} catch (Exception e) {
 

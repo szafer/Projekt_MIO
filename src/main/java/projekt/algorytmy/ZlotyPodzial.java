@@ -33,7 +33,7 @@ public class ZlotyPodzial implements Algorytm {
 		// lewa i prawa próbka
 		double xL = b - k * (b - a);
 		double xR = a + k * (b - a);
-
+        Integer it = 0;
 		// pętla póki nie zostanie spełniony warunek stopu
 		while ((b - a) > EPSILON) {
 			System.out.println("xL=" + format(xL) + "\t  xR=" + format(xR));
@@ -51,13 +51,10 @@ public class ZlotyPodzial implements Algorytm {
 				xR = a + k * (b - a);
 			}
 			try {
-				// TODO nie podawać współrzędnych tylko ilośc iteracji po
-				// kßórych schodzi do 0
-				data.add(new XYChart.Data(xL, a));
-				data.add(new XYChart.Data(xR, b));
-			} catch (Exception e) {
+                data.add(new XYChart.Data(it++, xR));
+            } catch (Exception e) {
 
-			}
+            }
 		}
 
 		// zwróć wartość środkową przedziału

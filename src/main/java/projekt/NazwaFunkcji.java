@@ -3,8 +3,8 @@ package projekt;
 public enum NazwaFunkcji {
 
 	KWADRATOWA("Funkcja kwadratowa"), 
-	F2("F2"), 
-	F3("F3"),
+	F2("(x-5)^2"), 
+	F3("x^3-x"),
 	MICH("Funkcja Michalewicza"),
 	RAST("Rastrigin"),
 	SCHW("Schwefel"),

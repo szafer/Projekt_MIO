@@ -14,11 +14,11 @@ public enum NazwaAlgorytmu {
 
     @Override
     public String toString() {
-        return nazwa;
+        return opis;
     }
 
-    public String getOpis() {
-        return opis;
+    public String getNazwa() {
+        return nazwa;
     }
 
 }
