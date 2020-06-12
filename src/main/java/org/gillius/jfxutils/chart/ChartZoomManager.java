@@ -16,6 +16,8 @@
 
 package org.gillius.jfxutils.chart;
 
+import org.gillius.EventHandlerManager;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -36,7 +38,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.gillius.jfxutils.EventHandlerManager;
 
 /**
  * ChartZoomManager manages a zooming selection rectangle and the bounds of the graph. It can be

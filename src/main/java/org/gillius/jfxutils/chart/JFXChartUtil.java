@@ -29,7 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
-import org.gillius.jfxutils.JFXUtil;
+import org.gillius.JFXUtil;
 
 /**
  * JFXChartUtil contains chart-related JavaFX utility methods used in the Gillius jfxutils project.

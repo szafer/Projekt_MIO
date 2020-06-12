@@ -16,12 +16,13 @@
 
 package org.gillius.jfxutils.chart;
 
+import org.gillius.EventHandlerManager;
+
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.chart.ValueAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.input.MouseEvent;
-import org.gillius.jfxutils.EventHandlerManager;
 
 /**
  * ChartPanManager manages drag gestures on an {@link XYChart} by translating them to panning

@@ -1,20 +1,42 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>z1</groupId>
-	<artifactId>z1</artifactId>
+	<groupId>pl.edu.us</groupId>
+	<artifactId>mio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>z1</name>
+	<name>Project_MIO</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javafx.version>14</javafx.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-	<dependencies>
+	<dependencies>	
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx</artifactId>
+			<version>${javafx.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -41,12 +63,6 @@
 			<artifactId>jzy3d-javafx</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.eclipse.swt.org.eclipse.swt.gtk.linux.x86_64.4.3.swt/org.eclipse.swt.gtk.linux.x86_64 -->
-		<dependency>
-			<groupId>org.eclipse.swt.org.eclipse.swt.gtk.linux.x86_64.4.3.swt</groupId>
-			<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
-			<version>4.3</version>
-		</dependency>
 
 	</dependencies>
 
@@ -63,4 +79,29 @@
 			<url>http://maven.jzy3d.org/releases</url>
 		</repository>
 	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.1</version>
+			<configuration>
+			<release>${maven.compiler.release}</release>
+			</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.4</version>
+				<configuration>
+					<mainClass>org.openjfx.App</mainClass>
+
+					<mainClass>pl.edu.us.mio.application.ProjektMio</mainClass>
+					<includePathExceptionsInClasspath>true</includePathExceptionsInClasspath>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
+
